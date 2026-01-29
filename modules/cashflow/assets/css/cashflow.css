@@ -1,0 +1,30 @@
+/* 
+ Cashflow — capa de marca (NO rompe funcionalidad)
+ - No redefine estilos globales de otros módulos.
+ - Solo aplica a elementos específicos de Cashflow usando IDs.
+ - Usa tokens de brand.css (variables --cmb-*).
+*/
+
+.cmb-erp-root .cmb-erp-card__header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;}
+.cmb-erp-root h2{color:var(--cmb-primary,#1F272B);} 
+
+#btn_ingreso,#cf_save,#pay_save{background:var(--cmb-gradient-brand,linear-gradient(90deg,#9328AC,#504AA5));color:var(--cmb-white,#fff);border:1px solid rgba(255,255,255,.10);border-radius:var(--cmb-radius,14px);font-weight:900;}
+#btn_ingreso:hover,#cf_save:hover,#pay_save:hover{filter:brightness(.96);} 
+#btn_egreso{background:var(--cmb-primary,#1F272B);color:var(--cmb-white,#fff);border:1px solid rgba(255,255,255,.08);border-radius:var(--cmb-radius,14px);font-weight:900;}
+#btn_egreso:hover{filter:brightness(.96);} 
+
+#cf_modal_view .cmb-erp-btn--ghost,#cf_modal_pay .cmb-erp-btn--ghost{background:transparent;color:var(--cmb-primary,#1F272B);border:1px solid var(--cmb-border,#e2e8f0);border-radius:var(--cmb-radius,14px);font-weight:900;}
+#cf_modal_view .cmb-erp-btn--ghost:hover,#cf_modal_pay .cmb-erp-btn--ghost:hover{background:rgba(31,39,43,.04);} 
+
+#cf_tbody [data-cf-action="view"]{background:transparent;color:var(--cmb-primary,#1F272B);border:1px solid var(--cmb-border,#e2e8f0);border-radius:var(--cmb-radius,14px);font-weight:900;}
+#cf_tbody [data-cf-action="view"]:hover{background:rgba(31,39,43,.04);} 
+#cf_tbody [data-cf-action="pay"]{background:var(--cmb-primary,#1F272B);color:var(--cmb-white,#fff);border:1px solid rgba(255,255,255,.08);border-radius:var(--cmb-radius,14px);font-weight:900;}
+#cf_tbody [data-cf-action="pay"]:hover{filter:brightness(.96);} 
+
+#cf_detalle,#cf_beneficiario,#cf_monto_bob,#cf_monto_usd,#cf_tasa,#pay_fecha,#pay_monto_usd,#pay_tasa,#pay_file{border:1px solid var(--cmb-border,#e2e8f0);border-radius:var(--cmb-radius,14px);font-weight:700;}
+#cf_metodo,#cf_categoria_egreso,#cf_categoria_ingreso,#pay_metodo{border:1px solid var(--cmb-border,#e2e8f0);border-radius:var(--cmb-radius,14px);font-weight:800;}
+
+#cf_tipo_label{background:var(--cmb-gradient-brand,linear-gradient(90deg,#9328AC,#504AA5));color:var(--cmb-white,#fff);border:1px solid rgba(255,255,255,.12);letter-spacing:.04em;text-transform:uppercase;}
+
+#cf_modal_pay,#cf_modal_view,#cf_modal_history{background:rgba(15,23,42,.55)!important;z-index:99990!important;}
+#cf_modal_pay .cmb-erp-modal__dialog,#cf_modal_view .cmb-erp-modal__dialog,#cf_modal_history .cmb-erp-modal__dialog{background:#fff!important;opacity:1!important;border:1px solid rgba(226,232,240,.95);border-radius:var(--cmb-radius-lg,18px);box-shadow:var(--cmb-shadow,0 14px 34px rgba(2,6,23,.18));overflow:hidden;}
