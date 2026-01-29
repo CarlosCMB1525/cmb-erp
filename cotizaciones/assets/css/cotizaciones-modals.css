@@ -1,0 +1,32 @@
+/* Cotizaciones: ajustes de modales (sin scroll lateral) */
+
+/* Evitar scroll horizontal del modal */
+.cmb-erp-modal .cmb-erp-modal__panel,
+.cmb-erp-modal .cmb-erp-modal__content,
+.cmb-erp-modal .cmb-erp-card {
+  overflow-x: hidden !important;
+}
+
+/* La tabla dentro del modal debe adaptarse */
+.cmb-erp-modal .cmb-erp-table-wrap {
+  overflow-x: auto; /* si algo excede, que sea dentro del wrap */
+}
+
+.cmb-erp-modal table.cmb-erp-table {
+  width: 100% !important;
+  min-width: 0 !important;
+  table-layout: fixed;
+}
+
+.cmb-erp-modal table.cmb-erp-table th,
+.cmb-erp-modal table.cmb-erp-table td {
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Inputs de búsqueda a 100% */
+.cmb-erp-modal input[type="search"],
+.cmb-erp-modal input.cmb-erp-input {
+  width: 100%;
+  box-sizing: border-box;
+}
