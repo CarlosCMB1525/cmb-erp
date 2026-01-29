@@ -1,3 +1,0 @@
-/* Facturación: modal controlado por clase */
-#cmb_invoicing_root .crm-modal{ display:none; }
-#cmb_invoicing_root .crm-modal.is_open{ display:flex !important; }
