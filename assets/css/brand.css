@@ -1,0 +1,18 @@
+/* CMB ERP — Brand Tokens */
+:root{
+  --cmb-primary:#1F272B;
+  --cmb-secondary:#9328AC;
+  --cmb-accent:#504AA5;
+  --cmb-white:#FFFFFF;
+  --cmb-gradient-brand:linear-gradient(90deg,var(--cmb-secondary),var(--cmb-accent));
+  --cmb-border:#e2e8f0;
+  --cmb-muted:#64748b;
+  --cmb-radius:14px;
+  --cmb-radius-lg:18px;
+  --cmb-shadow:0 14px 34px rgba(2,6,23,.07);
+}
+.cmb-erp-root,.cmb-erp-root *{box-sizing:border-box;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans",sans-serif;}
+.cmb-erp-root{font-size:14px;color:#0f172a;}
+@media(max-width:720px){.cmb-erp-root{font-size:13px;}}
+.cmb-erp-root .cmb-erp-title{font-size:18px;font-weight:900;margin:0;color:var(--cmb-primary);}
+.cmb-erp-root .cmb-erp-subtitle{font-size:13px;font-weight:700;margin:4px 0 0;color:var(--cmb-muted);}

@@ -1,0 +1,19 @@
+/* CMB ERP — Tables */
+.cmb-erp-root .cmb-erp-table-wrap{width:100%;overflow:auto;border-radius:var(--cmb-radius);border:1px solid var(--cmb-border);background:#fff;-webkit-overflow-scrolling:touch;}
+.cmb-erp-root .cmb-erp-table{width:100%;border-collapse:separate;border-spacing:0;min-width:980px;}
+.cmb-erp-root .cmb-erp-table thead th{position:sticky;top:0;z-index:1;background:var(--cmb-primary);color:#fff;text-align:left;font-size:12px;letter-spacing:.04em;text-transform:uppercase;padding:12px;border-bottom:1px solid rgba(255,255,255,.08);} 
+.cmb-erp-root .cmb-erp-table td{padding:12px;border-bottom:1px solid rgba(226,232,240,.9);vertical-align:top;background:#fff;} 
+.cmb-erp-root .cmb-erp-table tbody tr:nth-child(even) td{background:#f8fafc;} 
+.cmb-erp-root .cmb-erp-table tbody tr:hover td{background:rgba(147,40,172,.06);} 
+.cmb-erp-root .cmb-erp-text-right{text-align:right;} 
+.cmb-erp-root .cmb-erp-text-muted{color:var(--cmb-muted);} 
+@media(max-width:720px){
+  .cmb-erp-root .cmb-erp-table{min-width:0;width:100%;}
+  .cmb-erp-root .cmb-erp-table thead{display:none;}
+  .cmb-erp-root .cmb-erp-table tbody tr{display:block;margin:10px 0;border:1px solid var(--cmb-border);border-radius:var(--cmb-radius);overflow:hidden;box-shadow:var(--cmb-shadow);} 
+  .cmb-erp-root .cmb-erp-table tbody td{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:10px 12px;} 
+  .cmb-erp-root .cmb-erp-table tbody td:last-child{border-bottom:none;} 
+  .cmb-erp-root .cmb-erp-table tbody td::before{content:attr(data-label);font-weight:900;color:var(--cmb-muted);text-transform:uppercase;letter-spacing:.04em;font-size:11px;flex:0 0 44%;max-width:44%;}
+  .cmb-erp-root .cmb-erp-table tbody td.cmb-erp-text-right{justify-content:flex-end;}
+  .cmb-erp-root .cmb-erp-table tbody td.cmb-erp-text-right::before{content:"";display:none;}
+}

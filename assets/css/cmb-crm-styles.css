@@ -1,0 +1,1611 @@
+/* ====================================================================== 
+ CMB CRM — CSS MAESTRO UNIFICADO
+ Ruta destino: assets/css/cmb-crm-styles.css
+ Generado por auditoría: unifica
+ - CSS previo (cmb-crm-*)
+ - Compatibilidad legacy (crm-*)
+ - Estilos extraídos de <style> en PHP
+ - Reemplazo de inline styles por clases auto-generadas
+ ====================================================================== */
+
+/* ======================================================================
+   CMB CRM — CSS GLOBAL UNIFICADO
+   Archivo destino: /assets/css/cmb-crm-style.css
+
+   - Unifica tokens + componentes UI
+   - Incluye sistema de botones 1–8 (btn-1 = Degradado Morado → Negro)
+   - No contiene selectores con prefijo "crm-"
+   - Mantiene compatibilidad con JS existente del módulo Pagos:
+     clases rp-row, rp-overdue, rp-box, rp-icon (NO son "crm-")
+   ====================================================================== */
+
+/* =========================
+   DESIGN TOKENS
+   ========================= */
+:root{
+  /* Marca */
+  --cmb-crm-primary: #1F272B;
+  --cmb-crm-secondary: #9328AC;
+  --cmb-crm-support-1: #504AA5;
+  --cmb-crm-support-2: #FFFFFF;
+
+  /* Gradientes */
+  --cmb-crm-gradient-1: linear-gradient(135deg, #1F272B, #504AA5);
+  --cmb-crm-gradient-2: linear-gradient(135deg, #9328AC, #1F272B); /* Morado -> Negro */
+  --cmb-crm-gradient-3: linear-gradient(135deg, #9328AC, #504AA5);
+  --cmb-crm-gradient-4: linear-gradient(135deg, #504AA5, #1F272B);
+
+  /* Estados */
+  --cmb-crm-success: #10b981;
+  --cmb-crm-danger: #ef4444;
+  --cmb-crm-warning: #f59e0b;
+  --cmb-crm-info: #3b82f6;
+
+  /* Neutros */
+  --cmb-crm-bg-main: #f8fafc;
+  --cmb-crm-bg-card: #ffffff;
+  --cmb-crm-border: #e2e8f0;
+  --cmb-crm-border-soft: #eef2f7;
+  --cmb-crm-text-main: #0f172a;
+  --cmb-crm-text-muted: #64748b;
+
+  /* Tipografía */
+  --cmb-crm-font-family: "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  --cmb-crm-font-size: 0.92rem;
+  --cmb-crm-font-weight: 800;
+  --cmb-crm-line-height: 1.5;
+
+  /* Botones */
+  --cmb-crm-btn-padding-y: 0.75rem;
+  --cmb-crm-btn-padding-x: 1.25rem;
+  --cmb-crm-btn-min-width: 120px;
+  --cmb-crm-btn-border-w: 2px;
+  --cmb-crm-btn-radius: 0.85rem;
+
+  /* Inputs */
+  --cmb-crm-input-radius: 0.9rem;
+  --cmb-crm-input-padding-y: 0.75rem;
+  --cmb-crm-input-padding-x: 0.9rem;
+  --cmb-crm-input-border: 1px solid var(--cmb-crm-border);
+  --cmb-crm-input-focus: 0 0 0 3px rgba(147,40,172,.14);
+
+  /* Cards */
+  --cmb-crm-card-radius: 14px;
+  --cmb-crm-card-shadow: 0 10px 28px rgba(2,6,23,.06);
+  --cmb-crm-card-pad: 18px;
+
+  /* Sombras */
+  --cmb-crm-shadow: 0 4px 6px -1px rgba(0,0,0,0.10);
+  --cmb-crm-shadow-soft: 0 10px 22px rgba(2,6,23,0.06);
+  --cmb-crm-shadow-primary-hover: 0 10px 25px rgba(147, 40, 172, 0.35);
+  --cmb-crm-shadow-dark-hover: 0 10px 25px rgba(31, 39, 43, 0.35);
+
+  /* Transición */
+  --cmb-crm-transition: all 0.25s ease;
+
+  /* Tabla */
+  --cmb-crm-table-head-bg: var(--cmb-crm-primary);
+  --cmb-crm-table-head-text: #ffffff;
+
+  /* Z-index */
+  --cmb-crm-z-modal: 99999;
+}
+
+/* =========================
+   BASE / RESET / LAYOUT
+   ========================= */
+.cmb-crm-root,
+.cmb-crm-root *{
+  box-sizing: border-box;
+}
+
+.cmb-crm-root{
+  font-family: var(--cmb-crm-font-family);
+  color: var(--cmb-crm-text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: var(--cmb-crm-line-height);
+  width: 100%;
+  max-width: 100%;
+}
+
+.cmb-crm-container-full{
+  width: 100%;
+  max-width: 100%;
+}
+
+.cmb-crm-text-muted{ color: var(--cmb-crm-text-muted); }
+.cmb-crm-text-right{ text-align: right; }
+.cmb-crm-text-center{ text-align: center; }
+
+.cmb-crm-text-success{ color: var(--cmb-crm-success); }
+.cmb-crm-text-danger{ color: var(--cmb-crm-danger); }
+.cmb-crm-text-info{ color: var(--cmb-crm-info); }
+.cmb-crm-text-warning{ color: var(--cmb-crm-warning); }
+
+.cmb-crm-font-bold{ font-weight: 900; }
+.cmb-crm-mt-20{ margin-top: 20px; }
+
+/* =========================
+   CARDS / HEADER / TITLES
+   ========================= */
+.cmb-crm-card{
+  width: 100%;
+  background: var(--cmb-crm-bg-card);
+  border: 1px solid var(--cmb-crm-border);
+  border-top: 4px solid var(--cmb-crm-secondary);
+  border-radius: var(--cmb-crm-card-radius);
+  box-shadow: var(--cmb-crm-card-shadow);
+  padding: var(--cmb-crm-card-pad);
+  margin: 16px 0;
+}
+
+.cmb-crm-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cmb-crm-title{
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 950;
+  color: var(--cmb-crm-text-main);
+}
+
+.cmb-crm-subtitle{
+  margin: 6px 0 0;
+  font-size: .92rem;
+  font-weight: 750;
+  color: var(--cmb-crm-text-muted);
+}
+
+/* =========================
+   FORMS
+   ========================= */
+.cmb-crm-label{
+  display: block;
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  margin: 10px 0 6px;
+  color: var(--cmb-crm-text-main);
+}
+
+.cmb-crm-input,
+.cmb-crm-select,
+.cmb-crm-textarea{
+  width: 100%;
+  max-width: 100%;
+  padding: var(--cmb-crm-input-padding-y) var(--cmb-crm-input-padding-x);
+  border: var(--cmb-crm-input-border);
+  border-radius: var(--cmb-crm-input-radius);
+  background: #fff;
+  color: var(--cmb-crm-text-main);
+  font-weight: 850;
+  font-size: 14px;
+  transition: var(--cmb-crm-transition);
+  min-height: 44px;
+  outline: none;
+}
+
+.cmb-crm-textarea{
+  min-height: 96px;
+  resize: vertical;
+}
+
+.cmb-crm-input:focus,
+.cmb-crm-select:focus,
+.cmb-crm-textarea:focus{
+  border-color: rgba(147,40,172,.45);
+  box-shadow: var(--cmb-crm-input-focus);
+}
+
+/* =========================
+   TABLES
+   ========================= */
+.cmb-crm-table-wrap,
+.cmb-crm-table-responsive{
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--cmb-crm-border);
+  border-radius: var(--cmb-crm-card-radius);
+  background: #fff;
+}
+
+.cmb-crm-table{
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 980px;
+  font-size: 13px;
+}
+
+.cmb-crm-table thead th{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--cmb-crm-table-head-bg);
+  color: var(--cmb-crm-table-head-text);
+  text-align: left;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.cmb-crm-table tbody td{
+  padding: 12px;
+  border-bottom: 1px solid var(--cmb-crm-border-soft);
+  vertical-align: top;
+}
+
+.cmb-crm-table tbody tr:nth-child(even){ background: #fcfcfd; }
+.cmb-crm-table tbody tr:hover{ background: rgba(147,40,172,.06); }
+
+/* =========================
+   BADGES
+   ========================= */
+.cmb-crm-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.cmb-crm-badge-info{
+  background: rgba(59,130,246,.10);
+  border-color: rgba(59,130,246,.25);
+  color: #1d4ed8;
+}
+
+.cmb-crm-badge-success{
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #10b981;
+}
+
+.cmb-crm-badge-warning{
+  background: #fffbeb;
+  border-color: #fde68a;
+  color: #b45309;
+}
+
+.cmb-crm-badge-danger{
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #ef4444;
+}
+
+.cmb-crm-badge-neutral{
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #334155;
+}
+
+/* =========================
+   BUTTONS (BASE)
+   Usa: class="cmb-crm-btn cmb-crm-btn-1" etc.
+   ========================= */
+.cmb-crm-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  font-weight: var(--cmb-crm-font-weight);
+  text-align: center;
+  cursor: pointer;
+  padding: var(--cmb-crm-btn-padding-y) var(--cmb-crm-btn-padding-x);
+  font-size: var(--cmb-crm-font-size);
+  border-radius: var(--cmb-crm-btn-radius);
+  border: var(--cmb-crm-btn-border-w) solid transparent;
+  text-decoration: none;
+  transition: var(--cmb-crm-transition);
+  margin: .25rem;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  min-width: var(--cmb-crm-btn-min-width);
+  line-height: var(--cmb-crm-line-height);
+  box-shadow: var(--cmb-crm-shadow);
+}
+
+.cmb-crm-btn-sm{
+  padding: .5rem 1rem;
+  font-size: .82rem;
+  min-width: 90px;
+}
+
+.cmb-crm-btn-block{
+  width: 100%;
+  margin: .5rem 0;
+}
+
+.cmb-crm-btn:disabled,
+.cmb-crm-btn-disabled{
+  opacity: .6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.cmb-crm-btn:active{
+  transform: translateY(1px);
+  transition: transform .1s ease;
+}
+
+.cmb-crm-btn:focus-visible{
+  outline: 2px solid var(--cmb-crm-secondary);
+  outline-offset: 2px;
+}
+
+/* =========================
+   BUTTONS 1–8
+   btn-1 = Degradado Morado -> Negro (PRINCIPAL)
+   ========================= */
+/* 1) Degradado Morado -> Negro */
+.cmb-crm-btn-1{
+  background: var(--cmb-crm-gradient-2) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.cmb-crm-btn-1:hover{
+  background: var(--cmb-crm-gradient-3) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--cmb-crm-shadow-primary-hover);
+}
+
+/* 2) Negro sólido */
+.cmb-crm-btn-2{
+  background: var(--cmb-crm-primary) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.cmb-crm-btn-2:hover{
+  background: var(--cmb-crm-gradient-1) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--cmb-crm-shadow-dark-hover);
+}
+
+/* 3) Borde negro sólido */
+.cmb-crm-btn-3{
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, var(--cmb-crm-primary), var(--cmb-crm-primary)) border-box !important;
+  border: var(--cmb-crm-btn-border-w) solid transparent !important;
+  color: var(--cmb-crm-primary) !important;
+}
+.cmb-crm-btn-3:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(31,39,43,0.15);
+}
+.cmb-crm-btn-3::before{
+  content:'';
+  position:absolute;
+  top:0; left:-100%;
+  width:100%; height:100%;
+  background: linear-gradient(90deg, transparent, rgba(31,39,43,0.1), transparent);
+  transition:left .6s ease;
+}
+.cmb-crm-btn-3:hover::before{ left:100%; }
+
+/* 4) Borde morado sólido */
+.cmb-crm-btn-4{
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, var(--cmb-crm-secondary), var(--cmb-crm-secondary)) border-box !important;
+  border: var(--cmb-crm-btn-border-w) solid transparent !important;
+  color: var(--cmb-crm-secondary) !important;
+}
+.cmb-crm-btn-4:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(147,40,172,0.15);
+}
+.cmb-crm-btn-4::before{
+  content:'';
+  position:absolute;
+  top:0; left:-100%;
+  width:100%; height:100%;
+  background: linear-gradient(90deg, transparent, rgba(147,40,172,0.1), transparent);
+  transition:left .6s ease;
+}
+.cmb-crm-btn-4:hover::before{ left:100%; }
+
+/* 5) Borde índigo sólido */
+.cmb-crm-btn-5{
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, var(--cmb-crm-support-1), var(--cmb-crm-support-1)) border-box !important;
+  border: var(--cmb-crm-btn-border-w) solid transparent !important;
+  color: var(--cmb-crm-support-1) !important;
+}
+.cmb-crm-btn-5:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(80,74,165,0.15);
+}
+.cmb-crm-btn-5::before{
+  content:'';
+  position:absolute;
+  top:0; left:-100%;
+  width:100%; height:100%;
+  background: linear-gradient(90deg, transparent, rgba(80,74,165,0.1), transparent);
+  transition:left .6s ease;
+}
+.cmb-crm-btn-5:hover::before{ left:100%; }
+
+/* 6) Borde degradado Negro -> Índigo */
+.cmb-crm-btn-6{
+  background: linear-gradient(white, white) padding-box,
+              var(--cmb-crm-gradient-1) border-box !important;
+  border: var(--cmb-crm-btn-border-w) solid transparent !important;
+  color: var(--cmb-crm-primary) !important;
+}
+.cmb-crm-btn-6:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(31,39,43,0.2);
+}
+.cmb-crm-btn-6::before{
+  content:'';
+  position:absolute;
+  top:0; left:-100%;
+  width:100%; height:100%;
+  background: linear-gradient(90deg, transparent, rgba(31,39,43,0.1), transparent);
+  transition:left .6s ease;
+}
+.cmb-crm-btn-6:hover::before{ left:100%; }
+
+/* 7) Borde degradado Morado -> Negro */
+.cmb-crm-btn-7{
+  background: linear-gradient(white, white) padding-box,
+              var(--cmb-crm-gradient-2) border-box !important;
+  border: var(--cmb-crm-btn-border-w) solid transparent !important;
+  color: var(--cmb-crm-secondary) !important;
+}
+.cmb-crm-btn-7:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(147,40,172,0.2);
+}
+.cmb-crm-btn-7::before{
+  content:'';
+  position:absolute;
+  top:0; left:-100%;
+  width:100%; height:100%;
+  background: linear-gradient(90deg, transparent, rgba(147,40,172,0.1), transparent);
+  transition:left .6s ease;
+}
+.cmb-crm-btn-7:hover::before{ left:100%; }
+
+/* 8) Borde degradado Morado -> Índigo */
+.cmb-crm-btn-8{
+  background: linear-gradient(white, white) padding-box,
+              var(--cmb-crm-gradient-3) border-box !important;
+  border: var(--cmb-crm-btn-border-w) solid transparent !important;
+  color: var(--cmb-crm-secondary) !important;
+}
+.cmb-crm-btn-8:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(147,40,172,0.2);
+}
+.cmb-crm-btn-8::before{
+  content:'';
+  position:absolute;
+  top:0; left:-100%;
+  width:100%; height:100%;
+  background: linear-gradient(90deg, transparent, rgba(147,40,172,0.1), transparent);
+  transition:left .6s ease;
+}
+.cmb-crm-btn-8:hover::before{ left:100%; }
+
+/* Alias: primario = btn-1 */
+.cmb-crm-btn-primario{
+  background: var(--cmb-crm-gradient-2) !important;
+  color:#fff !important;
+  border:none !important;
+}
+.cmb-crm-btn-primario:hover{
+  background: var(--cmb-crm-gradient-3) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--cmb-crm-shadow-primary-hover);
+}
+
+/* Botón peligro (extra para acciones destructivas) */
+.cmb-crm-btn-danger{
+  background: #ef4444 !important;
+  color: #fff !important;
+  border: none !important;
+}
+.cmb-crm-btn-danger:hover{
+  background: #dc2626 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(239,68,68,.22);
+}
+
+/* =========================
+   MODAL
+   ========================= */
+.cmb-crm-modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15,23,42,.62);
+  z-index: var(--cmb-crm-z-modal);
+  padding: 16px;
+}
+
+.cmb-crm-modal-content{
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  border-radius: 18px;
+  border: 1px solid var(--cmb-crm-border);
+  box-shadow: 0 30px 80px rgba(0,0,0,.28);
+  padding: 18px;
+}
+
+/* =========================
+   REGISTRO DE PAGOS (UI)
+   - Mantiene clases rp-* para JS
+   ========================= */
+.cmb-crm-rp-root .cmb-crm-header-right{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:flex-end;
+  justify-content:flex-end;
+}
+
+.cmb-crm-rp-root .rp-box{
+  padding: 10px;
+  border: 1px solid var(--cmb-crm-border);
+  border-radius: 12px;
+  background: #fff;
+  margin-bottom: 8px;
+  box-shadow: 0 10px 24px rgba(2,6,23,.06);
+}
+
+.cmb-crm-rp-root .rp-row.rp-overdue{
+  outline: 2px solid rgba(239,68,68,.35);
+  outline-offset: -2px;
+  background: rgba(239,68,68,.05);
+}
+
+.cmb-crm-rp-root .rp-icon{
+  font-size: 16px;
+}
+
+/* Tabla responsive tipo "card" en móvil para módulo pagos */
+@media (max-width: 820px){
+  .cmb-crm-table{
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .cmb-crm-table thead{
+    display: none !important;
+  }
+  .cmb-crm-table,
+  .cmb-crm-table tbody,
+  .cmb-crm-table tr,
+  .cmb-crm-table td{
+    display: block !important;
+    width: 100% !important;
+  }
+  .cmb-crm-table tbody tr{
+    background:#fff !important;
+    margin: 10px 0 !important;
+    border: 1px solid var(--cmb-crm-border) !important;
+    border-radius: 16px !important;
+    overflow:hidden !important;
+  }
+  .cmb-crm-table tbody td{
+    border-bottom: 1px solid var(--cmb-crm-border-soft) !important;
+    padding: 12px 14px !important;
+  }
+  .cmb-crm-table tbody td:last-child{
+    border-bottom: none !important;
+  }
+  .cmb-crm-table tbody td::before{
+    content: attr(data-label);
+    display:block;
+    font-size:11px;
+    font-weight:950;
+    color: var(--cmb-crm-text-muted);
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    margin-bottom:6px;
+  }
+}
+
+/* Buttons full width en móvil */
+@media (max-width: 768px){
+  .cmb-crm-btn{
+    width:100%;
+    min-width:0;
+    margin:.35rem 0;
+  }
+  .cmb-crm-btn-sm{ width:auto; }
+  .cmb-crm-card{ padding:14px; }
+}
+
+
+/* ======================================================================
+   FORCE LAYER — PRIORIDAD ABSOLUTA
+   Prefijo por body/class: .cmb-crm-custom-page
+   Añadir al FINAL del archivo cmb-crm-style.css
+   ====================================================================== */
+
+.cmb-crm-custom-page .cmb-crm-root,
+.cmb-crm-custom-page .cmb-crm-root *{
+  font-family: var(--cmb-crm-font-family) !important;
+}
+
+.cmb-crm-custom-page .cmb-crm-btn{
+  font-family: var(--cmb-crm-font-family) !important;
+  font-weight: var(--cmb-crm-font-weight) !important;
+  border-radius: var(--cmb-crm-btn-radius) !important;
+  box-shadow: var(--cmb-crm-shadow) !important;
+}
+
+/* ✅ Botones 1–8: fuerza color/gradiente/borde */
+.cmb-crm-custom-page .cmb-crm-btn-1{
+  background: var(--cmb-crm-gradient-2) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.cmb-crm-custom-page .cmb-crm-btn-1:hover{
+  background: var(--cmb-crm-gradient-3) !important;
+  color: #fff !important;
+  box-shadow: var(--cmb-crm-shadow-primary-hover) !important;
+}
+
+.cmb-crm-custom-page .cmb-crm-btn-2{
+  background: var(--cmb-crm-primary) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.cmb-crm-custom-page .cmb-crm-btn-2:hover{
+  background: var(--cmb-crm-gradient-1) !important;
+  color: #fff !important;
+  box-shadow: var(--cmb-crm-shadow-dark-hover) !important;
+}
+
+.cmb-crm-custom-page .cmb-crm-btn-3{
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, var(--cmb-crm-primary), var(--cmb-crm-primary)) border-box !important;
+  border: var(--cmb-crm-btn-border-w) solid transparent !important;
+  color: var(--cmb-crm-primary) !important;
+}
+.cmb-crm-custom-page .cmb-crm-btn-4{
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, var(--cmb-crm-secondary), var(--cmb-crm-secondary)) border-box !important;
+  border: var(--cmb-crm-btn-border-w) solid transparent !important;
+  color: var(--cmb-crm-secondary) !important;
+}
+.cmb-crm-custom-page .cmb-crm-btn-5{
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, var(--cmb-crm-support-1), var(--cmb-crm-support-1)) border-box !important;
+  border: var(--cmb-crm-btn-border-w) solid transparent !important;
+  color: var(--cmb-crm-support-1) !important;
+}
+.cmb-crm-custom-page .cmb-crm-btn-6{
+  background: linear-gradient(white, white) padding-box,
+              var(--cmb-crm-gradient-1) border-box !important;
+  border: var(--cmb-crm-btn-border-w) solid transparent !important;
+  color: var(--cmb-crm-primary) !important;
+}
+.cmb-crm-custom-page .cmb-crm-btn-7{
+  background: linear-gradient(white, white) padding-box,
+              var(--cmb-crm-gradient-2) border-box !important;
+  border: var(--cmb-crm-btn-border-w) solid transparent !important;
+  color: var(--cmb-crm-secondary) !important;
+}
+.cmb-crm-custom-page .cmb-crm-btn-8{
+  background: linear-gradient(white, white) padding-box,
+              var(--cmb-crm-gradient-3) border-box !important;
+  border: var(--cmb-crm-btn-border-w) solid transparent !important;
+  color: var(--cmb-crm-secondary) !important;
+}
+
+/* Alias principal */
+.cmb-crm-custom-page .cmb-crm-btn-primario{
+  background: var(--cmb-crm-gradient-2) !important;
+  color:#fff !important;
+  border:none !important;
+}
+
+/* Inputs básicos para evitar “pisadas” de Elementor/admin */
+.cmb-crm-custom-page .cmb-crm-input,
+.cmb-crm-custom-page .cmb-crm-select,
+.cmb-crm-custom-page .cmb-crm-textarea{
+  border-radius: var(--cmb-crm-input-radius) !important;
+  font-family: var(--cmb-crm-font-family) !important;
+  font-weight: 850 !important;
+}
+
+/* ======================================================================
+   COMPATIBILIDAD: clases legacy .crm-* (módulos Clientes/Servicios/Ventas/etc.)
+   - Se mapean a tokens y estilos del sistema .cmb-crm-*
+   ====================================================================== */
+:root{
+  --crm-primary: var(--cmb-crm-primary);
+  --crm-secondary: var(--cmb-crm-secondary);
+  --crm-danger: var(--cmb-crm-danger);
+  --crm-warning: var(--cmb-crm-warning);
+  --crm-info: var(--cmb-crm-info);
+  --crm-success: var(--cmb-crm-success);
+  --crm-border: var(--cmb-crm-border);
+  --crm-border-soft: var(--cmb-crm-border-soft);
+  --crm-text-main: var(--cmb-crm-text-main);
+  --crm-text-muted: var(--cmb-crm-text-muted);
+}
+
+/* Root / Layout */
+.crm-root, .cmb-crm-root{ width:100%; max-width:100%; font-family:var(--cmb-crm-font-family); color:var(--cmb-crm-text-main); line-height:var(--cmb-crm-line-height); }
+.crm-root, .crm-root *{ box-sizing:border-box; }
+.crm-card{ width:100%; background:var(--cmb-crm-bg-card); border:1px solid var(--cmb-crm-border); border-top:4px solid var(--cmb-crm-secondary); border-radius:var(--cmb-crm-card-radius); box-shadow:var(--cmb-crm-card-shadow); padding:var(--cmb-crm-card-pad); margin:16px 0; }
+
+/* Header / Titles */
+.crm-header, .crm-header-flex{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.crm-title{ margin:0; font-size:1.35rem; font-weight:950; color:var(--cmb-crm-text-main); }
+.crm-subtitle{ margin:6px 0 0; font-size:.92rem; font-weight:750; color:var(--cmb-crm-text-muted); }
+
+/* Forms */
+.crm-label{ display:block; font-size:11px; font-weight:950; letter-spacing:.5px; text-transform:uppercase; margin:10px 0 6px; color:var(--cmb-crm-text-main); }
+.crm-input, .crm-select, .crm-textarea{
+  width:100%; max-width:100%; padding:var(--cmb-crm-input-padding-y) var(--cmb-crm-input-padding-x);
+  border:var(--cmb-crm-input-border); border-radius:var(--cmb-crm-input-radius);
+  background:#fff; color:var(--cmb-crm-text-main); font-weight:850; font-size:14px; min-height:44px;
+  transition:var(--cmb-crm-transition); outline:none;
+}
+.crm-textarea{ min-height:96px; resize:vertical; }
+.crm-input:focus, .crm-select:focus, .crm-textarea:focus{ border-color:rgba(147,40,172,.45); box-shadow:var(--cmb-crm-input-focus); }
+
+/* Grid */
+.crm-grid-form{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+@media(max-width:980px){ .crm-grid-form{ grid-template-columns:repeat(2,1fr);} }
+@media(max-width:640px){ .crm-grid-form{ grid-template-columns:1fr;} }
+
+/* Tables */
+.crm-table-wrapper{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid var(--cmb-crm-border); border-radius:var(--cmb-crm-card-radius); background:#fff; }
+.crm-table{ width:100%; border-collapse:collapse; min-width:980px; font-size:13px; }
+.crm-table thead th{ position:sticky; top:0; z-index:2; background:var(--cmb-crm-table-head-bg); color:var(--cmb-crm-table-head-text); text-align:left; padding:12px; font-size:12px; font-weight:950; text-transform:uppercase; letter-spacing:.5px; }
+.crm-table tbody td{ padding:12px; border-bottom:1px solid var(--cmb-crm-border-soft); vertical-align:top; }
+.crm-table tbody tr:nth-child(even){ background:#fcfcfd; }
+.crm-table tbody tr:hover{ background:rgba(147,40,172,.06); }
+
+/* Utilities */
+.text-muted{ color:var(--cmb-crm-text-muted); }
+.text-right{ text-align:right; }
+.text-center{ text-align:center; }
+.text-success{ color:var(--cmb-crm-success); }
+.text-danger{ color:var(--cmb-crm-danger); }
+.text-warning{ color:var(--cmb-crm-warning); }
+.text-info{ color:var(--cmb-crm-info); }
+
+/* Badges */
+.crm-badge{ display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:900; letter-spacing:.4px; text-transform:uppercase; border:1px solid transparent; white-space:nowrap; }
+.bg-info{ background:rgba(59,130,246,.10); border-color:rgba(59,130,246,.25); color:#1d4ed8; }
+.bg-success{ background:#ecfdf5; border-color:#a7f3d0; color:#10b981; }
+.bg-warning{ background:#fffbeb; border-color:#fde68a; color:#b45309; }
+.bg-danger{ background:#fef2f2; border-color:#fecaca; color:#ef4444; }
+.bg-purple{ background:rgba(147,40,172,.10); border-color:rgba(147,40,172,.25); color:#6b21a8; }
+
+/* Buttons (legacy) */
+.crm-btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem; font-weight:var(--cmb-crm-font-weight);
+  cursor:pointer; padding:var(--cmb-crm-btn-padding-y) var(--cmb-crm-btn-padding-x); font-size:var(--cmb-crm-font-size);
+  border-radius:var(--cmb-crm-btn-radius); border:var(--cmb-crm-btn-border-w) solid transparent; text-decoration:none;
+  transition:var(--cmb-crm-transition); margin:.25rem; background:#fff; min-width:var(--cmb-crm-btn-min-width);
+  box-shadow:var(--cmb-crm-shadow);
+}
+.crm-btn-sm{ padding:.5rem 1rem; font-size:.82rem; min-width:90px; }
+.crm-btn-block{ width:100%; margin:.5rem 0; }
+.crm-btn:disabled{ opacity:.6; cursor:not-allowed; pointer-events:none; }
+.crm-btn-primary{ background:var(--cmb-crm-gradient-2) !important; color:#fff !important; border:none !important; }
+.crm-btn-primary:hover{ background:var(--cmb-crm-gradient-3) !important; transform:translateY(-2px); box-shadow:var(--cmb-crm-shadow-primary-hover); }
+.crm-btn-dark{ background:var(--cmb-crm-primary) !important; color:#fff !important; border:none !important; }
+.crm-btn-dark:hover{ background:var(--cmb-crm-gradient-1) !important; transform:translateY(-2px); box-shadow:var(--cmb-crm-shadow-dark-hover); }
+.crm-btn-ghost{ background:transparent !important; border:1px solid var(--cmb-crm-border) !important; color:var(--cmb-crm-text-main) !important; box-shadow:none !important; }
+.crm-btn-ghost:hover{ background:#f8fafc !important; }
+.crm-btn-danger{ background:#ef4444 !important; color:#fff !important; border:none !important; }
+.crm-btn-danger:hover{ background:#dc2626 !important; transform:translateY(-2px); box-shadow:0 12px 28px rgba(239,68,68,.22); }
+
+/* Modal (legacy) */
+.crm-modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(15,23,42,.62); z-index:var(--cmb-crm-z-modal); padding:16px; }
+.crm-modal-content{ width:100%; max-width:520px; background:#fff; border-radius:18px; border:1px solid var(--cmb-crm-border); box-shadow:0 30px 80px rgba(0,0,0,.28); padding:18px; }
+
+/* Auditoría: sticky column helpers */
+.sticky-mode{ position:relative; }
+.crm-table.sticky-mode .sticky-col{ position:sticky; right:0; z-index:3; }
+
+
+
+/* ======================================================================
+   EXTRAÍDO DE contabilidad.php (<style> inline)
+   ====================================================================== */
+#cmb_crm_conta_root, #cmb_crm_conta_root * { box-sizing:border-box !important; }
+      #cmb_crm_conta_root { width:100% !important; max-width:none !important; }
+      #cmb_crm_conta_root .crm-card { width:100% !important; max-width:none !important; }
+
+      #cmb_crm_conta_root *{
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif !important;
+      }
+
+      /* =========================
+         ESTILO 1 (Marca): .cmb-btn-primario
+         ========================= */
+      .cmb-btn-primario{
+        background:#9328AC !important;
+        color:#ffffff !important;
+        border:1px solid #9328AC !important;
+        border-radius:14px !important;
+        padding:11px 14px !important;
+        font-weight:950 !important;
+        letter-spacing:.2px !important;
+        cursor:pointer !important;
+        display:inline-flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+        gap:10px !important;
+        min-height:44px !important;
+        transition:0.3s ease !important;
+        box-shadow:0 10px 24px rgba(147,40,172,.18) !important;
+        user-select:none !important;
+        text-decoration:none !important;
+      }
+      .cmb-btn-primario:hover{
+        background:#7F1D9A !important;
+        border-color:#7F1D9A !important;
+        box-shadow:0 14px 30px rgba(147,40,172,.28) !important;
+        transform:translateY(-1px) !important;
+      }
+      .cmb-btn-primario:active{
+        transform:translateY(0) !important;
+        box-shadow:0 8px 18px rgba(147,40,172,.18) !important;
+      }
+      .cmb-btn-primario:focus{
+        outline:3px solid rgba(147,40,172,.25) !important;
+        outline-offset:2px !important;
+      }
+
+      /* =========================
+         ESTILO 2 (Secundario): .cmb-btn-secundario
+         ========================= */
+      .cmb-btn-secundario{
+        background:#ffffff !important;
+        color:#0f172a !important;
+        border:1px solid #e2e8f0 !important;
+        border-radius:14px !important;
+        padding:11px 14px !important;
+        font-weight:950 !important;
+        letter-spacing:.2px !important;
+        cursor:pointer !important;
+        display:inline-flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+        gap:10px !important;
+        min-height:44px !important;
+        transition:0.3s ease !important;
+        box-shadow:0 10px 24px rgba(2,6,23,.06) !important;
+        user-select:none !important;
+        text-decoration:none !important;
+      }
+      .cmb-btn-secundario:hover{
+        background:#f8fafc !important;
+        box-shadow:0 14px 30px rgba(2,6,23,.08) !important;
+        transform:translateY(-1px) !important;
+      }
+      .cmb-btn-secundario:active{ transform:translateY(0) !important; }
+
+      /* Header */
+      .cmb_crm_header{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:14px;}
+      .cmb_crm_title{margin:0; font-weight:980; font-size:1.55rem; color:#0f172a;}
+      .cmb_crm_subtitle{margin:0; color:#64748b; font-weight:700; font-size:.92rem;}
+      .cmb_crm_head_right{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end; width:100%;}
+      .cmb_crm_quick_wrap{display:flex; gap:10px; flex:1; min-width:260px;}
+      .cmb_crm_quick_input{
+        width:100% !important;
+        padding:12px 14px !important;
+        border:1px solid #e2e8f0 !important;
+        border-radius:14px !important;
+        background:#fff !important;
+        font-size:14px !important;
+        font-weight:800 !important;
+        min-height:44px !important;
+      }
+
+      /* Widgets */
+      .cmb_crm_widgets{display:grid; grid-template-columns: 1fr 1fr 1.2fr; gap:14px; margin-top:12px;}
+      @media(max-width:900px){ .cmb_crm_widgets{grid-template-columns:1fr;} }
+      .cmb_crm_widget{background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:16px; box-shadow:0 14px 34px rgba(2,6,23,.07); position:relative; overflow:hidden;}
+      .cmb_crm_widget::before{content:""; position:absolute; left:0; top:0; right:0; height:4px; background:linear-gradient(90deg,#9328AC,#4f46e5);}
+      .cmb_crm_widget.rec::before{background:linear-gradient(90deg,#f59e0b,#f97316);}
+      .cmb_crm_widget.gen::before{background:linear-gradient(90deg,#0f172a,#334155);}
+      .cmb_crm_w_label{font-size:11px; font-weight:950; color:#475569; text-transform:uppercase; letter-spacing:.6px;}
+      .cmb_crm_w_val{margin-top:6px; font-size:1.85rem; font-weight:1000; color:#0f172a;}
+      .cmb_crm_w_hint{margin-top:8px; font-size:12px; font-weight:750; color:#64748b;}
+
+      /* Secundarios */
+      .cmb_crm_secondary{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:12px;}
+      .cmb_crm_secondary .cmb_crm_widget{padding:14px;}
+      .cmb_crm_secondary .cmb_crm_w_val{font-size:1.5rem;}
+
+      /* Tabla */
+      .cmb_crm_table_wrap{width:100% !important; margin-top:16px !important; border-radius:16px !important; border:1px solid #e2e8f0 !important; overflow:hidden !important; background:#fff !important;}
+      .cmb_crm_table_scroll{width:100% !important; overflow-x:auto !important;}
+      .cmb_crm_table{width:100% !important; border-collapse:collapse !important; min-width:1100px !important; font-size:13px !important;}
+      .cmb_crm_th{background:#0f172a !important; color:#fff !important; padding:12px 12px !important; text-align:left !important; font-weight:950 !important; font-size:12px !important; text-transform:uppercase !important; letter-spacing:.6px !important; position:sticky; top:0; z-index:2;}
+      .cmb_crm_td{padding:12px !important; border-bottom:1px solid #eef2f7 !important; vertical-align:top !important;}
+      .cmb_crm_tr:nth-child(even){background:#fcfcfd;}
+      .cmb_crm_tr:hover{background:rgba(147,40,172,.06);}
+      .cmb_crm_td_center{text-align:center; color:#64748b; padding:22px; font-weight:850;}
+
+      /* Contenido tabla */
+      .cmb_crm_company{font-weight:950; color:#0f172a;}
+      .cmb_crm_meta{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;}
+      .cmb_crm_chip{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:#f8fafc; border:1px solid #e2e8f0; color:#475569; font-size:12px; font-weight:850;}
+      .cmb_crm_period{display:inline-flex; padding:6px 10px; border-radius:999px; background:rgba(147,40,172,.10); border:1px solid rgba(147,40,172,.25); color:#6b21a8; font-weight:950; font-size:12px;}
+      .cmb_crm_badge{display:inline-flex; align-items:center; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:950; letter-spacing:.4px; text-transform:uppercase; border:1px solid transparent;}
+      .cmb_crm_badge_success{background:#ecfdf5; color:#10b981; border-color:#a7f3d0;}
+      .cmb_crm_badge_warn{background:#fff7ed; color:#f97316; border-color:#fed7aa;}
+      .cmb_crm_badge_danger{background:#fef2f2; color:#ef4444; border-color:#fecaca;}
+      .cmb_crm_badge_neutral{background:#f1f5f9; color:#334155; border-color:#e2e8f0;}
+      .cmb_crm_dates{display:flex; flex-direction:column; gap:3px; font-size:12px; color:#334155;}
+      .cmb_crm_dates span{color:#64748b; font-weight:850;}
+      .cmb_crm_money{font-weight:1000;}
+      .cmb_crm_money_green{color:#10b981;}
+      .cmb_crm_money_red{color:#ef4444;}
+      .cmb_crm_small{margin-top:6px; font-size:11px; color:#64748b; font-weight:850;}
+
+      /* Responsive: modo card */
+      @media(max-width:720px){
+        .cmb_crm_table{min-width:0 !important; width:100% !important;}
+        .cmb_crm_table thead{display:none !important;}
+        .cmb_crm_table, .cmb_crm_table tbody, .cmb_crm_table tr, .cmb_crm_table td{display:block !important; width:100% !important;}
+        .cmb_crm_tr{background:#fff !important; margin:10px 0 !important; border:1px solid #e2e8f0 !important; border-radius:16px !important; overflow:hidden !important;}
+        .cmb_crm_td{border-bottom:1px solid #eef2f7 !important; padding:12px 14px !important;}
+        .cmb_crm_td:last-child{border-bottom:none !important;}
+        .cmb_crm_td::before{content: attr(data-label); display:block; font-size:11px; font-weight:950; color:#64748b; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px;}
+        .cmb_crm_quick_wrap{width:100%; min-width:unset;}
+        .cmb_crm_head_right{justify-content:flex-start;}
+      }
+
+      /* Modal */
+      .cmb_crm_modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(15,23,42,.62); z-index:99999; padding:16px;}
+      .cmb_crm_modal.is_open{display:flex;}
+      .cmb_crm_modal_card{width:100%; max-width:920px; background:#fff; border-radius:18px; border:1px solid #e2e8f0; box-shadow:0 30px 80px rgba(0,0,0,.28); overflow:hidden;}
+      .cmb_crm_modal_head{padding:16px 18px; background:linear-gradient(90deg, rgba(147,40,172,.14), rgba(79,70,229,.10)); border-bottom:1px solid #e2e8f0; display:flex; align-items:flex-start; justify-content:space-between; gap:12px;}
+      .cmb_crm_modal_title{margin:0; font-size:18px; font-weight:1000; color:#0f172a;}
+      .cmb_crm_modal_sub{margin:6px 0 0; color:#64748b; font-size:13px; font-weight:750;}
+      .cmb_crm_modal_close{background:#fff; border:1px solid #e2e8f0; border-radius:14px; padding:10px 12px; cursor:pointer; font-weight:950; min-height:44px;}
+      .cmb_crm_modal_body{padding:18px;}
+      .cmb_crm_grid{display:grid; grid-template-columns:repeat(12,1fr); gap:14px;}
+      .cmb_crm_col_6{grid-column:span 6;}
+      .cmb_crm_col_12{grid-column:span 12;}
+      @media(max-width:760px){ .cmb_crm_col_6{grid-column:span 12;} }
+      .cmb_crm_label{display:block; font-size:11px; font-weight:980; color:#0f172a; margin:0 0 8px; text-transform:uppercase; letter-spacing:.5px;}
+      .cmb_crm_input,.cmb_crm_select{width:100% !important; padding:12px 14px !important; border:1px solid #e2e8f0 !important; border-radius:14px !important; background:#fff !important; font-size:14px !important; font-weight:850 !important; min-height:44px !important;}
+      .cmb_crm_help{font-size:12px; color:#64748b; font-weight:750; margin-top:8px;}
+      .cmb_crm_modal_footer{padding:16px 18px; border-top:1px solid #e2e8f0; display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; background:#fff;}
+
+      /* Mensajes */
+      .cmb_crm_msg_box{margin-top:10px; padding:10px 12px; border-radius:14px; font-size:14px; font-weight:850; border:1px solid;}
+      .cmb_crm_msg_ok{background:#ecfdf5; border-color:#10b981; color:#065f46;}
+      .cmb_crm_msg_err{background:#fee2e2; border-color:#ef4444; color:#7f1d1d;}
+      .cmb_crm_msg_warn{background:#fffbeb; border-color:#f59e0b; color:#7c2d12;}
+
+/* ======================================================================
+   UTILITIES AUTO-GENERADAS: reemplazo de style="..." (con !important)
+   NOTA: se generan para mantener la prioridad del inline-style sin romper UI
+   ====================================================================== */
+
+.crm-u-0036370b{
+  display: flex !important;
+  gap: 10px !important;
+  margin-top: 12px !important;
+}
+
+.crm-u-021d797b{
+  margin: 0 !important;
+  font-size: 12px !important;
+  color: #10b981 !important;
+  font-weight: 700 !important;
+}
+
+.crm-u-024c8035{
+  height: 56px !important;
+  font-size: 16px !important;
+}
+
+.crm-u-04703481{
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+
+.crm-u-05a95168{
+  min-width: 600px !important;
+}
+
+.crm-u-0931fa98{
+  margin: 6px 0 !important;
+  color: #64748b !important;
+  font-weight: 700 !important;
+}
+
+.crm-u-0c4004be{
+  border-top-color: var(--crm-danger) !important;
+}
+
+.crm-u-111ae1c9{
+  color: var(--cmb-crm-danger) !important;
+}
+
+.crm-u-134143e2{
+  display: block !important;
+  margin-top: 6px !important;
+}
+
+.crm-u-1cfe6dcb{
+  display: flex !important;
+  gap: 6px !important;
+}
+
+.crm-u-1f3ec8e6{
+  padding: 20px !important;
+}
+
+.crm-u-20fbc189{
+  border: 2px dashed #cbd5e1 !important;
+  border-radius: 12px !important;
+  padding: 22px !important;
+  text-align: center !important;
+  background: #fff !important;
+  cursor: pointer !important;
+}
+
+.crm-u-221e55d9{
+  margin-left: auto !important;
+}
+
+.crm-u-25aea119{
+  margin-bottom: 6px !important;
+}
+
+.crm-u-351c7509{
+  padding: 10px !important;
+  border: 1px solid var(--crm-border) !important;
+  border-radius: 10px !important;
+  background: #fff !important;
+  margin-bottom: 8px !important;
+}
+
+.crm-u-35a94f01{
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  align-items: flex-start !important;
+}
+
+.crm-u-38ec281c{
+  color: #9328AC !important;
+}
+
+.crm-u-3926e247{
+  display: flex !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  align-items: flex-end !important;
+  justify-content: flex-end !important;
+}
+
+.crm-u-3b8df42c{
+  display: flex !important;
+  gap: 8px !important;
+  justify-content: flex-end !important;
+  flex-wrap: wrap !important;
+}
+
+.crm-u-3d36ffbc{
+  display: none !important;
+  min-height: 60px !important;
+}
+
+.crm-u-40b89493{
+  max-width: 420px !important;
+}
+
+.crm-u-413e3deb{
+  padding: 18px !important;
+}
+
+.crm-u-426e1b8d{
+  font-weight: 700 !important;
+  color: #4338ca !important;
+}
+
+.crm-u-46dcee64{
+  margin: 0 !important;
+}
+
+.crm-u-4bd114ef{
+  display: none !important;
+  padding: 12px !important;
+}
+
+.crm-u-50112695{
+  margin-top: 10px !important;
+  font-size: 12px !important;
+  min-height: 20px !important;
+}
+
+.crm-u-512d5156{
+  background: #f8fafc !important;
+  border: 2px dashed #9328AC !important;
+}
+
+.crm-u-59ad3383{
+  width: auto !important;
+  min-width: 280px !important;
+}
+
+.crm-u-5b3b643b{
+  border-style: dashed !important;
+}
+
+.crm-u-69fcfea7{
+  min-width: 1200px !important;
+}
+
+.crm-u-6c2c8eb5{
+  border-top-color: var(--cmb-crm-danger) !important;
+}
+
+.crm-u-716ecfd3{
+  margin-top: 20px !important;
+}
+
+.crm-u-7f45a6cc{
+  max-width: 640px !important;
+}
+
+.crm-u-83518d22{
+  max-height: 320px !important;
+  overflow: auto !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  padding: 10px !important;
+  background: #f8fafc !important;
+}
+
+.crm-u-8626f4d1{
+  background: #f1f5f9 !important;
+}
+
+.crm-u-8e03c141{
+  display: flex !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+}
+
+.crm-u-8f1f387e{
+  font-size: 12px !important;
+  margin-top: 4px !important;
+}
+
+.crm-u-92d17336{
+  margin-top: 10px !important;
+}
+
+.crm-u-93b8ea5b{
+  display: none !important;
+}
+
+.crm-u-95442d4f{
+  display: none !important;
+  gap: 10px !important;
+  margin-top: 15px !important;
+}
+
+.crm-u-96b97199{
+  display: flex !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+.crm-u-9bd93d36{
+  font-size: 12px !important;
+}
+
+.crm-u-9e8557de{
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.crm-u-9eb7ab2f{
+  color: var(--crm-danger) !important;
+}
+
+.crm-u-a2ad197f{
+  width: 180px !important;
+}
+
+.crm-u-a4e768e3{
+  margin-top: 10px !important;
+  padding: 12px !important;
+  background: #fff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+}
+
+.crm-u-aa203e33{
+  max-width: 600px !important;
+}
+
+.crm-u-ae4f87eb{
+  display: flex !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  margin-top: 12px !important;
+}
+
+.crm-u-aeb737c9{
+  cursor: default !important;
+}
+
+.crm-u-aff1b073{
+  margin: 8px 0 0 !important;
+}
+
+.crm-u-b0cbaf2e{
+  text-align: center !important;
+  padding: 25px !important;
+  color: #94a3b8 !important;
+}
+
+.crm-u-b294cdf9{
+  color: #ef4444 !important;
+  font-weight: 800 !important;
+}
+
+.crm-u-b6df810d{
+  font-size: 42px !important;
+  color: #9328AC !important;
+}
+
+.crm-u-b9fb75dc{
+  min-width: 260px !important;
+}
+
+.crm-u-ba7829a0{
+  margin-top: 15px !important;
+}
+
+.crm-u-c5536b1e{
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 8px !important;
+  background: #fff !important;
+  border-radius: 8px !important;
+  margin-bottom: 8px !important;
+}
+
+.crm-u-c58d5bea{
+  margin-bottom: 10px !important;
+}
+
+.crm-u-ca14aeb4{
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  align-items: center !important;
+}
+
+.crm-u-cae9beac{
+  max-width: 1200px !important;
+}
+
+.crm-u-cc568fe7{
+  font-weight: 700 !important;
+}
+
+.crm-u-cd1d679a{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.crm-u-cd4f7356{
+  max-width: 260px !important;
+}
+
+.crm-u-ceb45c50{
+  display: flex !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+
+.crm-u-d65b1733{
+  font-size: 11px !important;
+  font-weight: 700 !important;
+}
+
+.crm-u-d6f1658e{
+  color: #9328AC !important;
+  font-weight: 700 !important;
+}
+
+.crm-u-d79ce2bc{
+  margin-top: 8px !important;
+}
+
+.crm-u-d9fb6d15{
+  margin: 0 !important;
+  padding-left: 18px !important;
+  font-size: 12px !important;
+  color: #64748b !important;
+}
+
+.crm-u-e94138da{
+  <?php echo $iskey ? 'font-weight: 800 !important;
+  ': '' !important;
+}
+
+.crm-u-ea918e80{
+  background: #fff !important;
+}
+
+.crm-u-eca6283a{
+  color: #ef4444 !important;
+  font-weight: 700 !important;
+}
+
+.crm-u-f1e0ae6f{
+  min-width: 280px !important;
+}
+
+.crm-u-fd63f44f{
+  align-items: flex-end !important;
+}
+/* ======================================================================
+   REGISTRO PAGOS — mejoras UX + Mobile Fix (buscador)
+   Añadir al final de assets/css/cmb-crm-styles.css
+   ====================================================================== */
+.cmb-crm-rp-root .cmb-crm-header-right{ position:relative; z-index:5; }
+.cmb-crm-rp-root .cmb-crm-table-wrap{ position:relative; z-index:1; }
+.cmb-crm-rp-root .rp-controls{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end; width:100%; margin-top:10px; }
+.cmb-crm-rp-root #rp_count{ font-weight:800; }
+
+@media (max-width: 820px){
+  .cmb-crm-rp-root .cmb-crm-header{ align-items:stretch; }
+  .cmb-crm-rp-root .cmb-crm-header-right{ justify-content:flex-start !important; }
+  .cmb-crm-rp-root .rp-controls{ justify-content:flex-start; }
+  .cmb-crm-rp-root #rp_clear{ width:100%; }
+}
+
+/* Tap targets */
+@media (max-width: 820px){
+  .cmb-crm-rp-root .cmb-crm-btn{ min-height:48px; }
+  .cmb-crm-rp-root .cmb-crm-table td[data-label="ACCIÓN"] .cmb-crm-btn{ width:100%; }
+}
+
+
+/* ======================================================================
+   Registro Pagos — Disparadores manuales SOLO Mobile (Mejora Progresiva)
+   Añadir al final de assets/css/cmb-crm-styles.css
+   ====================================================================== */
+
+/* Contenedor input + botones */
+.cmb-crm-rp-root .rp-search-row{ display:block; }
+.cmb-crm-rp-root .rp-mobile-actions{ display:none; gap:8px; align-items:center; }
+
+/* Botones touch-friendly */
+.cmb-crm-rp-root .rp-m-btn{
+  min-width:44px;
+  min-height:44px;
+  width:44px;
+  height:44px;
+  padding:0;
+  border-radius:14px;
+  line-height:1;
+  box-shadow:0 10px 24px rgba(2,6,23,.06);
+}
+
+@media (max-width: 820px){
+  .cmb-crm-rp-root .rp-search-row{ display:flex; gap:8px; align-items:center; }
+  .cmb-crm-rp-root .rp-search-row .cmb-crm-input{ flex:1; }
+  .cmb-crm-rp-root .rp-mobile-actions{ display:flex; }
+}
+/* ======================================================================
+   COTIZACIONES (modulo_cotizaciones) — estilos específicos
+   Añadir al final de assets/css/cmb-crm-styles.css
+   ====================================================================== */
+#qt_root .qt-results{
+  position:absolute;
+  background:#fff;
+  border:1px solid var(--crm-border);
+  border-radius:12px;
+  box-shadow:0 18px 40px rgba(2,6,23,.10);
+  margin-top:6px;
+  width:100%;
+  max-height:280px;
+  overflow:auto;
+  z-index:9999;
+}
+#qt_root .qt-res-item{
+  padding:10px 12px;
+  cursor:pointer;
+  border-bottom:1px solid var(--crm-border-soft);
+}
+#qt_root .qt-res-item:hover{ background:rgba(147,40,172,.06); }
+#qt_root .qt-res-item:last-child{ border-bottom:none; }
+/* ======================================================================
+   FIX: Popups/Modales y buscadores dentro de ventanas (listas gigantes)
+   - Limita altura de resultados y habilita scroll interno
+   - Mantiene el diseño responsive (no rompe desktop)
+   Añadir al FINAL de: assets/css/cmb-crm-styles.css
+   ====================================================================== */
+
+/* 1) Modales: evita que el contenido crezca infinito */
+.crm-modal{
+  align-items: center;
+}
+.crm-modal .crm-modal-content{
+  max-height: 92vh;
+  overflow: auto;
+}
+
+/* 2) Tablas dentro de modales: scroll interno en vez de lista enorme */
+.crm-modal .crm-table-wrapper,
+.crm-modal .cmb-crm-table-wrap,
+.crm-modal .cmb-crm-table-wrapper{
+  max-height: 60vh;
+  overflow: auto;
+}
+
+/* 3) Dropdown de resultados (buscador cliente / buscador servicios) */
+.qt-results,
+.crm-results,
+.crm-search-results{
+  max-height: min(280px, 45vh);
+  overflow: auto;
+}
+
+/* 4) Si el dropdown está dentro de una tarjeta, que respete el ancho de pantalla */
+#qt_root .qt-results{
+  width: 100%;
+  max-width: 520px;
+}
+@media (max-width: 820px){
+  #qt_root .qt-results{ max-width: 100%; }
+}
+
+/* ======================================================================
+   COTIZACIONES — FIX POPUP CATÁLOGO (evitar lista gigante)
+   Añadir al FINAL de assets/css/cmb-crm-styles.css
+   ====================================================================== */
+
+/* Modal del catálogo de servicios */
+#qt_modal .crm-modal-content{
+  max-height: 88vh !important;
+  display: flex;
+  flex-direction: column;
+  width: min(900px, 96vw);
+}
+
+#qt_modal .qt-modal-toolbar{
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding-bottom: 10px;
+  z-index: 5;
+}
+
+#qt_modal .qt-modal-body{
+  flex: 1;
+  min-height: 0; /* clave para que overflow funcione en flex */
+}
+
+#qt_modal .crm-table-wrapper{
+  max-height: 58vh;
+  overflow: auto;
+}
+
+@media (max-width: 820px){
+  #qt_modal .crm-table-wrapper{ max-height: 64vh; }
+}
+
+
+/* BEGIN FIX: VENTAS MODAL SERVICIOS (#modalS) */
+/* =========================================================
+   Ventas: Modal Buscador de Servicios (#modalS)
+   Objetivo: que se vea perfecto en Desktop y Mobile
+   - Scroll interno sin cortar contenido
+   - Header sticky con buscador visible
+   - Footer fijo con botón de cerrar
+   - Tabla con scroll horizontal en pantallas pequeñas
+   ========================================================= */
+
+/* Contenedor del modal: reutiliza .crm-modal base; aquí solo afinamos el contenido */
+#modalS .crm-modal-content{
+  max-width: min(1200px, 96vw);
+  width: min(1200px, 96vw);
+  max-height: 88vh;
+  overflow: hidden;            /* el scroll va dentro */
+  padding: 0;                  /* header/footer controlan padding */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header sticky */
+#modalS .crm-header-flex{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(226,232,240,.9);
+}
+
+/* Input de búsqueda dentro del modal */
+#modalS #in_mod{
+  margin: 12px 18px 0 18px;
+}
+
+/* Área scrollable para la tabla */
+#modalS .crm-table-wrapper{
+  margin: 12px 18px 0 18px;
+  overflow: auto;
+  max-height: calc(88vh - 170px); /* header + input + footer */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Footer fijo dentro del modal */
+#modalS .text-right{
+  margin-top: auto;
+  padding: 12px 18px 16px 18px;
+  border-top: 1px solid rgba(226,232,240,.9);
+  background: #fff;
+}
+
+/* Mejoras de accesibilidad/UX */
+#modalS .crm-modal-content:focus{ outline: none; }
+
+/* Mobile */
+@media (max-width: 720px){
+  #modalS .crm-modal-content{
+    max-height: 92vh;
+  }
+  #modalS .crm-header-flex{
+    padding: 14px 14px;
+  }
+  #modalS #in_mod{
+    margin: 10px 14px 0 14px;
+  }
+  #modalS .crm-table-wrapper{
+    margin: 10px 14px 0 14px;
+    max-height: calc(92vh - 170px);
+  }
+  /* Mantener columnas legibles con scroll horizontal */
+  #modalS .crm-table{
+    min-width: 720px;
+  }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 420px){
+  #modalS .crm-modal-content{ max-height: 94vh; }
+  #modalS .crm-table{ min-width: 680px; }
+}
+/* END FIX: VENTAS MODAL SERVICIOS (#modalS) */

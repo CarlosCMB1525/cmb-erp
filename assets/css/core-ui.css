@@ -1,0 +1,29 @@
+/* CMB ERP — Core UI */
+.cmb-erp-root .cmb-erp-card{background:#fff;border:1px solid var(--cmb-border);border-radius:var(--cmb-radius-lg);box-shadow:var(--cmb-shadow);padding:16px;}
+.cmb-erp-root .cmb-erp-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;}
+.cmb-erp-root .cmb-erp-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+.cmb-erp-root .cmb-erp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cmb-erp-root .cmb-erp-span-2{grid-column:span 2;}
+@media(max-width:720px){.cmb-erp-root .cmb-erp-grid{grid-template-columns:1fr;}.cmb-erp-root .cmb-erp-span-2{grid-column:span 1;}}
+.cmb-erp-root .cmb-erp-label{display:block;font-size:11px;font-weight:900;color:var(--cmb-primary);text-transform:uppercase;letter-spacing:.04em;margin:0 0 8px;}
+.cmb-erp-root .cmb-erp-input,.cmb-erp-root .cmb-erp-select{width:100%;padding:12px 14px;border:1px solid var(--cmb-border);border-radius:var(--cmb-radius);background:#fff;font-size:14px;font-weight:700;min-height:44px;}
+.cmb-erp-root .cmb-erp-btn{border-radius:var(--cmb-radius);padding:10px 14px;font-weight:800;border:1px solid transparent;cursor:pointer;user-select:none;transition:filter .15s ease,background-color .15s ease,border-color .15s ease,color .15s ease;}
+.cmb-erp-root .cmb-erp-btn--sm{padding:7px 10px;font-size:12px;}
+.cmb-erp-root .cmb-erp-btn--primary{background:var(--cmb-gradient-brand);color:#fff;border-color:rgba(255,255,255,.08);} 
+.cmb-erp-root .cmb-erp-btn--primary:hover{filter:brightness(.95);} 
+.cmb-erp-root .cmb-erp-btn--dark{background:var(--cmb-primary);color:#fff;border-color:rgba(255,255,255,.06);} 
+.cmb-erp-root .cmb-erp-btn--dark:hover{filter:brightness(.95);} 
+.cmb-erp-root .cmb-erp-btn--ghost{background:transparent;color:var(--cmb-primary);border-color:var(--cmb-border);} 
+.cmb-erp-root .cmb-erp-btn--ghost:hover{background:rgba(31,39,43,.04);border-color:rgba(31,39,43,.18);} 
+.cmb-erp-root .cmb-erp-btn:focus-visible{outline:2px solid rgba(80,74,165,.55);outline-offset:2px;}
+.cmb-erp-root .cmb-erp-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;font-weight:900;font-size:12px;line-height:1;border:1px solid transparent;white-space:nowrap;text-transform:uppercase;letter-spacing:.04em;}
+.cmb-erp-root .cmb-erp-badge--success{background:rgba(16,185,129,.12);color:#065f46;border-color:rgba(16,185,129,.22);} 
+.cmb-erp-root .cmb-erp-badge--warning{background:rgba(245,158,11,.14);color:#7c2d12;border-color:rgba(245,158,11,.24);} 
+.cmb-erp-root .cmb-erp-badge--info{background:rgba(80,74,165,.12);color:var(--cmb-accent);border-color:rgba(80,74,165,.22);} 
+.cmb-erp-root .cmb-erp-badge--brand{background:var(--cmb-gradient-brand);color:#fff;border-color:rgba(255,255,255,.12);} 
+.cmb-erp-root .cmb-erp-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(15,23,42,.55);z-index:999999;}
+.cmb-erp-root .cmb-erp-modal.is-open{display:flex;}
+.cmb-erp-root .cmb-erp-modal__content{width:min(900px,94vw);max-height:88vh;background:#fff;border:1px solid rgba(226,232,240,.9);border-radius:var(--cmb-radius-lg);box-shadow:var(--cmb-shadow);overflow:hidden;display:flex;flex-direction:column;}
+.cmb-erp-root .cmb-erp-modal__header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid rgba(226,232,240,.9);} 
+.cmb-erp-root .cmb-erp-modal__body{padding:14px 16px;overflow:auto;-webkit-overflow-scrolling:touch;} 
+.cmb-erp-root .cmb-erp-modal__footer{display:flex;justify-content:flex-end;gap:10px;padding:12px 16px;border-top:1px solid rgba(226,232,240,.9);} 
